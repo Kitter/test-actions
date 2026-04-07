@@ -1,0 +1,13 @@
+name: Test Schedule2
+on:
+  schedule:
+    - cron: '* * * * *'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check event
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "Time: $(date)"
+          echo "Schedule: ${{ github.event.schedule }}"
