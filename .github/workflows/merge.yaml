@@ -1,0 +1,26 @@
+name: Post-Merge Workflow
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  run_on_merge:
+    if: github.event.pull_request.merged == true
+    runs-on: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run post-merge tasks
+        run: |
+          echo "PR was merged into main! Running deployment..."
+          ls -l 
+  test:
+    runs-on: test
+    steps:
+      - name: test
+        run: |
+          echo "=====================3"
