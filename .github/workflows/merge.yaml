@@ -5,6 +5,9 @@ on:
     types: [closed]
     branches:
       - main
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }} # 定义组名
+  cancel-in-progress: false # 如果已经有正在运行的，等待它结束，而不是取消它
 
 jobs:
   run_on_merge:
@@ -17,7 +20,8 @@ jobs:
       - name: Run post-merge tasks
         run: |
           echo "PR was merged into main! Running deployment..."
-          ls -l 
+          ls -l
+          sleep 20
   test:
     runs-on: test
     steps:
