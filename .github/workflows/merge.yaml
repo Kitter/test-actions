@@ -23,7 +23,7 @@ jobs:
       - name: Run post-merge tasks
         run: |
           echo "PR was merged into main! Running deployment..."
-          echo "${github.workflow}-${github.ref}"
+          echo "${{ github.workflow }}-${{ github.ref }}"
           echo "${TEST_1}"
           echo "${TEST_2}"
           ls -l
