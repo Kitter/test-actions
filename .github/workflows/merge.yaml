@@ -56,7 +56,8 @@ jobs:
           result=$(echo ${ENV_MAP} | jq -r ".\"${KEY}\"")
           echo $result
           echo "==================1"
-          ENV_MAP='${{ vars.ENV_MAP || '{"key1":"value1"}' }}'
+          #ENV_MAP='${{ vars.ENV_MAP || '{"key1":"value1"}' }}'
+          ENV_MAP="${{ vars.ENV_MAP }} || $ENV_MAP"
           echo $ENV_MAP
           echo ${ENV_MAP} | jq -r ".key1"
           echo "==================2"
