@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - dev
+  workflow_dispatch:
   
 env:
   TEST_1: ${{ vars.TEST_1 || 'test_1_default' }}
