@@ -37,6 +37,7 @@ jobs:
           fi
           ls -l
           cat test2.txt
+          echo "${{ vars.TEST_1 }} ${{ secrets.GITHUB_TOKEN }},  ${{ secrets.TEST_SECRET }}"
           sleep 60
   test:
     if: github.event.pull_request.merged == true
