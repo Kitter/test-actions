@@ -51,6 +51,5 @@ jobs:
           echo "${TARGET_ENV}"
           echo "${{ github.workflow }}-${{ github.ref }}"
           KEY="key1"
-          #ENV_MAP="${{ vars.ENV_MAP || ${ENV_MAP} }}"
           ENV_MAP="${{ vars.ENV_MAP || '{"key1":"value1"}' }}"
           echo $(echo ${ENV_MAP} | jq -r ".\"${key}\"")
