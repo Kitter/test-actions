@@ -5,9 +5,10 @@ on:
     types: [closed]
     branches:
       - main
+  
 env:
   TEST_1: ${{ vars.TEST_1 || 'test_1_default' }}
-  TEST_2: ${{ env.TEST_1 }}_TEST_2
+  TEST_2: ${{ github.ref_name }}_TEST_2
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }} # 定义组名
   cancel-in-progress: false # 如果已经有正在运行的，等待它结束，而不是取消它
