@@ -5,6 +5,7 @@ on:
     types: [closed]
     branches:
       - main
+      - dev
   
 env:
   TEST_1: ${{ vars.TEST_1 || 'test_1_default' }}
