@@ -65,3 +65,5 @@ jobs:
           echo "==================2"
           result=$(echo "${ENV_MAP}" | jq -r ".\"${KEY}\"")
           echo $result
+      - name: test2
+        uses: ./.github/actions/test
