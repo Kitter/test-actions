@@ -10,7 +10,8 @@ on:
 env:
   TEST_1: ${{ vars.TEST_1 || 'test_1_default' }}
   TEST_2: ${{ github.ref_name }}_TEST_2
-  TARGET_ENV: ${{ github.ref_name == 'dev' && 'dev' || github.ref_name == 'main' && 'test' || '' }}
+  #TARGET_ENV: ${{ github.ref_name == 'dev' && 'dev' || github.ref_name == 'main' && 'test' || '' }}
+  TARGET_ENV: ${{github.ref_name == 'main' && 'test'}}
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }} # 定义组名
   cancel-in-progress: false # 如果已经有正在运行的，等待它结束，而不是取消它
@@ -29,6 +30,10 @@ jobs:
           echo "${TEST_1}"
           echo "${TEST_2}"
           echo "${TARGET_ENV}"
+          if [ -z ${TARGET_ENV} ]; then
+            echo "===============1"
+          else
+            echo "===============2"
           ls -l
           cat test2.txt
           sleep 20
