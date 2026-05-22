@@ -13,7 +13,7 @@ env:
   TEST_2: ${{ github.ref_name }}_TEST_2
   #TARGET_ENV: ${{ github.ref_name == 'dev' && 'dev' || github.ref_name == 'main' && 'test' || '' }}
   TARGET_ENV: ${{github.ref_name == 'main' && 'test' || ''}}
-  ENV_MAP: ${{ vars.ENV_MAP || '{"key1": "value1"}' }}
+  ENV_MAP: '{"key1": "value1"}'
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }} # 定义组名
   cancel-in-progress: false # 如果已经有正在运行的，等待它结束，而不是取消它
@@ -51,4 +51,5 @@ jobs:
           echo "${TARGET_ENV}"
           echo "${{ github.workflow }}-${{ github.ref }}"
           KEY="key1"
+          ENV_MAP=${{ vars.ENV_MAP || ENV_MAP }}
           echo $(echo ${ENV_MAP} | jq -r ".\"${key}\"")
