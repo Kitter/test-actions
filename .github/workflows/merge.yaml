@@ -37,7 +37,7 @@ jobs:
           fi
           ls -l
           cat test2.txt
-          sleep 20
+          sleep 60
   test:
     if: github.event.pull_request.merged == true
     runs-on: test
