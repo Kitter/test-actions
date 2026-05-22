@@ -34,6 +34,7 @@ jobs:
             echo "===============1"
           else
             echo "===============2"
+          fi
           ls -l
           cat test2.txt
           sleep 20
