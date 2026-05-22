@@ -41,10 +41,11 @@ jobs:
           echo "${{ vars.TEST_1 }} ${{ secrets.GITHUB_TOKEN }},  ${{ secrets.TEST_SECRET }}"
           sleep 60
   test:
-    if: github.event.pull_request.merged == true
+    #if: github.event.pull_request.merged == true
     runs-on: test
     steps:
       - name: test
         run: |
           echo "=====================3"
           echo "${TARGET_ENV}"
+          echo "${{ github.workflow }}-${{ github.ref }}"
