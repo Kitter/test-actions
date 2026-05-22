@@ -40,7 +40,13 @@ jobs:
           ls -l
           cat test2.txt
           echo "${{ vars.TEST_1 }} ${{ secrets.GITHUB_TOKEN }},  ${{ secrets.TEST_SECRET }}"
-          sleep 60
+          echo "TEST_STEP=123" >> $GITHUB_ENV
+          echo "step1==============$TEST_STEP"
+          TEST_STEP=123
+          echo "step1==============$TEST_STEP"
+          #sleep 10
+       - name: step env
+         run: echo "step2==============$TEST_STEP"
   test:
     #if: github.event.pull_request.merged == true
     runs-on: test
