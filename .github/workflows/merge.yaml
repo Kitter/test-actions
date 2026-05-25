@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: false # 如果已经有正在运行的，等待它结束，而不是取消它
 jobs:
   run_on_merge:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -71,5 +71,7 @@ jobs:
           echo "==================2"
           result=$(echo "${ENV_MAP}" | jq -r ".\"${KEY}\"")
           echo $result
+      - name: Checkout code
+        uses: actions/checkout@v6
       - name: test2
         uses: ./.github/actions/test
