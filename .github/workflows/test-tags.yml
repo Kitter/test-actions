@@ -7,9 +7,12 @@ on:
       - main
       - dev
   workflow_dispatch:
+  push:
+    tags:
+     - dev-*-*
 jobs:
   run_on_merge:
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch' || startswith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -19,5 +22,5 @@ jobs:
         run: |
           echo "github.ref====="${{github.ref}}
           echo "github.base_ref====="${{github.base_ref}}
-          echo "github.ref====="${{github.ref}}
+          echo "github.ref_name====="${{github.ref_name}}
           ls -l 
