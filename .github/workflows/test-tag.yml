@@ -1,4 +1,4 @@
-ame: test tag Workflow
+name: test tag Workflow
 
 on:
   pull_request:
